@@ -22,7 +22,6 @@ void CVoxelEngine::Run()
     graphics->Init();
 
     CWorld* world = new CWorld();
-    world->AddTriangle();
 
     CInputManager* inputManager = new CInputManager(EInputMode::Debug);
 
@@ -82,7 +81,7 @@ GLFWwindow* CVoxelEngine::CreateWindow(unsigned int width, unsigned int height, 
         return NULL;
     }
 
-    glfwSwapInterval(0);
+    //glfwSwapInterval(0);
 
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     glfwSetCursorPos(window, width * 0.5, height * 0.5);

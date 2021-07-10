@@ -1,11 +1,13 @@
 #pragma once
 #include <string>
+#include <array>
 #include "glm/glm.hpp"
 
 enum class EShaderType
 {
 	Unlit,
-    Default
+    Default,
+	COUNT
 };
 
 class CShader 
@@ -31,4 +33,16 @@ private:
 private:
 	EShaderType m_type;
 	unsigned int m_id = 0;
+};
+
+
+class Shaders
+{
+public:
+	static void Compile();
+	static CShader* GetShader(EShaderType type);
+
+private:
+	static std::array<CShader*, (int)EShaderType::COUNT> m_shaders;
+	static bool m_compiled;
 };

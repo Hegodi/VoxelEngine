@@ -4,12 +4,13 @@
 #include "HelpersVoxels.h"
 #include "MathUtils.h"
 #include "TerrainSettings.h"
+#include "../Materials/Material.h"
 
 #include <iostream>
 
-CTerrainSector::CTerrainSector(int indX, int indY)
+CTerrainSector::CTerrainSector(int indX, int indY, CMaterial const* material)
 {
-	m_mesh = new CMesh();
+	m_mesh = new CMesh(material);
 	LoadSector(indX, indY);
 	GenerateSectorMesh(indX, indY);
 }

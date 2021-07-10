@@ -23,12 +23,6 @@ void CWorld::Update(float deltaTime)
 }
 
 
-void CWorld::AddTriangle()
-{
-	CMesh* mesh = new CMesh();
-	m_meshes.push_back(mesh);
-}
-
 void CWorld::RemoveMesh(CMesh* mesh)
 {
 	auto it = std::find(m_meshes.begin(), m_meshes.end(), mesh);

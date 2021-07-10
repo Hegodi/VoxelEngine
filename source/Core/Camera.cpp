@@ -26,8 +26,10 @@ void CCamera::SetPosition(glm::vec3 const& position)
 
 void CCamera::SetRotation(float pitch, float yaw)
 {
-	m_pitch = MathUtils::Clamp(pitch, -80.0f, 45.0f);
+	m_pitch = MathUtils::Clamp(pitch, -45.0f, 45.0f);
 	m_yaw = yaw;
+	if (m_yaw > 360.0f) m_yaw -= 360.0f;
+	else if (m_yaw < 0.0f) m_yaw += 360.0f;
 	m_forwardVector = glm::rotate(World_FORWARD, glm::radians(m_yaw), World_UP);
 	m_forwardVector = glm::rotate(m_forwardVector, glm::radians(m_pitch), m_rightVector);
 	CalculateViewTransformation();

@@ -1,10 +1,11 @@
 #include "Mesh.h"
 #include "HelpersVoxels.h"
+#include "Materials/Material.h"
 #include <iostream>
 
-CMesh::CMesh()
+CMesh::CMesh(CMaterial const* material)
+    : m_material(material)
 {
-    //InitCube();
 }
 
 CMesh::~CMesh()

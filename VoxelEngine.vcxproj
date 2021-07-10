@@ -171,6 +171,7 @@
     <ClCompile Include="source\Core\Graphics.cpp" />
     <ClCompile Include="source\Core\HelpersVoxels.cpp" />
     <ClCompile Include="source\Core\InputManager.cpp" />
+    <ClCompile Include="source\Core\Materials\Material.cpp" />
     <ClCompile Include="source\Core\Materials\Shader.cpp" />
     <ClCompile Include="source\Core\Mesh.cpp" />
     <ClCompile Include="source\Core\Terrain\Terrain.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="source\Core\Graphics.h" />
     <ClInclude Include="source\Core\HelpersVoxels.h" />
     <ClInclude Include="source\Core\InputManager.h" />
+    <ClInclude Include="source\Core\Materials\Material.h" />
     <ClInclude Include="source\Core\Materials\Shader.h" />
     <ClInclude Include="source\Core\MathUtils.h" />
     <ClInclude Include="source\Core\Mesh.h" />

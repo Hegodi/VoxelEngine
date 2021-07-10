@@ -32,5 +32,5 @@ private:
 	float m_mouseDeltaPosY;
 
 	float m_cameraSpeed = 2.0f;
-	float m_cameraRotationSpeed = 90.0f;
+	float m_cameraRotationSpeed = 30.0f;
 };

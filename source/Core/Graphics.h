@@ -15,8 +15,5 @@ public:
 	void Render(GLFWwindow* window, CWorld const& world);
 
 private:
-	void DrawMesh(CMesh const* mesh, CCamera const* const camera, int color = 0);
-
-private:
-	CShader* m_shader = nullptr;
+	void DrawMesh(CMesh const* mesh, CCamera const* const camera);
 };

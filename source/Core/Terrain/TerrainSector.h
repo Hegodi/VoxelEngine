@@ -4,6 +4,7 @@
 #include "glm/glm.hpp"
 #include "Mesh.h"
 
+class CMaterial;
 enum class EVoxelType : unsigned char
 {
 	Air,
@@ -18,7 +19,7 @@ class CTerrainSector
 {
 public:
 
-	CTerrainSector(int indX, int indY);
+	CTerrainSector(int indX, int indY, CMaterial const* material);
 	~CTerrainSector();
 
 	CMesh const* GetMesh() const { return m_mesh; }
@@ -36,5 +37,4 @@ private:
 	int m_sectorIndY = -1;
 	std::vector<EVoxelType> m_voxelsData;
 	CMesh* m_mesh = nullptr;
-	
 };

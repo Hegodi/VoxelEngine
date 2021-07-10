@@ -5,9 +5,10 @@
 #include <GLFW/glfw3.h>
 #include "glm/glm.hpp"
 
+class CMaterial;
 struct CMesh
 {
-	CMesh();
+	CMesh(CMaterial const* material);
 	~CMesh();
 	void InitCube();
 
@@ -20,4 +21,5 @@ struct CMesh
 	unsigned int m_vertexArrayObject = 0;
 	unsigned int m_vertexBufferObject = 0;
 	unsigned int m_elemetsBufferObject = 0;
+	CMaterial const* m_material;
 };

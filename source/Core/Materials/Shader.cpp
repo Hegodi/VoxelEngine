@@ -76,8 +76,6 @@ const char* default_fragmentShaderSource = "#version 330 core\n"
 
 
 
-
-
 CShader::CShader() : CShader(EShaderType::Unlit)
 {
 }
@@ -204,3 +202,28 @@ void CShader::LinkShaders(unsigned int vertexShader, unsigned int fragmentShader
     glDeleteShader(fragmentShader);
 
 }
+
+void Shaders::Compile()
+{
+    for (int i = 0; i < (int)EShaderType::COUNT; i++)
+    {
+        m_shaders[i] = new CShader((EShaderType)i);
+    }
+    m_compiled = true;
+}
+
+CShader* Shaders::GetShader(EShaderType type)
+{
+    if (!m_compiled)
+    {
+        std::cout << "ERROR: trying to use a shader which has not been compiled. \n"
+                  << "Make sure you call Shaders::Compile() before\n";
+        return nullptr;
+    }
+
+    return m_shaders[(int)type];
+}
+
+
+std::array<CShader*, (int)EShaderType::COUNT> Shaders::m_shaders;
+bool Shaders::m_compiled = false;

@@ -14,7 +14,6 @@ public:
 
 	void Update(float deltaTime);
 
-	void AddTriangle();
 	void RemoveMesh(CMesh* mesh);
 
 	std::vector<CMesh*> const& GetMeshes() const { return m_meshes; }

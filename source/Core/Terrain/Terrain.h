@@ -3,6 +3,7 @@
 
 #include "glm/glm.hpp"
 #include "TerrainSector.h"
+#include "../Materials/Material.h"
 
 
 class CTerrain
@@ -13,6 +14,7 @@ public:
 
 	void SetPlayerPosition(glm::vec3 position);
 	std::array<CTerrainSector*, 9> const GetSectors() const { return m_sectorsLoaded; }
+	CMaterial const* GetMaterial() const { return m_material; }
 
 private:
 	void OnCurrentSectorChanged(int indXnew, int indYnew);
@@ -22,6 +24,7 @@ private:
 	void SwapSectors(int ind1, int ind2);
 
 private:
+	CMaterial* m_material;
 	int m_indCurrentSectorX = -1;
 	int m_indCurrentSectorY = -1;
 	std::array<CTerrainSector*, 9> m_sectorsLoaded;

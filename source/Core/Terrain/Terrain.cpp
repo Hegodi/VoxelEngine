@@ -19,6 +19,8 @@ CTerrain::CTerrain()
 	{
 		m_sectorsLoaded[i] = nullptr;
 	}
+
+	m_material = new CMaterialDefault();
 }
 
 CTerrain::~CTerrain()
@@ -31,6 +33,8 @@ CTerrain::~CTerrain()
 			m_sectorsLoaded[i] = nullptr;
 		}
 	}
+
+	delete m_material;
 }
 
 void CTerrain::SetPlayerPosition(glm::vec3 position)
@@ -55,7 +59,6 @@ void CTerrain::SetPlayerPosition(glm::vec3 position)
 		indY = floor(position.z / TerrainSettings::mc_sectorSideLength);
 	}
 
-	std::cout << position.x << " " << position.y << " " << position.z  << ":  " << indX << " " << indY << std::endl;
 	if (indX != m_indCurrentSectorX || indY != m_indCurrentSectorY)
 	{
 		OnCurrentSectorChanged(indX, indY);
@@ -98,7 +101,7 @@ void CTerrain::CreateSector(int index, int indX, int indY)
 	{
 		delete m_sectorsLoaded[index];
 	}
-	m_sectorsLoaded[index] = new CTerrainSector(indX, indY);
+	m_sectorsLoaded[index] = new CTerrainSector(indX, indY, m_material);
 }
 
 int CTerrain::FindSector(int indX, int indY)

@@ -91,8 +91,8 @@ void CInputManager::ProcessInputDebug(GLFWwindow* window, CWorld& world, float d
 
     if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
     {
-        world.GetCamera()->SetPosition(glm::vec3(0.0f, 10.0f, 0.0f));
-        world.GetCamera()->SetRotation(0.0f, 0.0f);
+        world.GetCamera()->SetPosition(glm::vec3(0.0f, 50.0f, 0.0f));
+        world.GetCamera()->SetRotation(-10.0f, 0.0f);
     }
     world.GetCamera()->Move(deltaTime * movementForward * m_cameraSpeed, deltaTime * movementRight * m_cameraSpeed);
     world.GetCamera()->Rotate(deltaTime * rotationPitch * m_cameraRotationSpeed, deltaTime * rotationYaw * m_cameraRotationSpeed);

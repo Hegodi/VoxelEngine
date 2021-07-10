@@ -57,6 +57,9 @@
     <ClCompile Include="source\Core\Terrain\TerrainSector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Core\Materials\Material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Core\Graphics.h">
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Core\Terrain\TerrainSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Core\Materials\Material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
