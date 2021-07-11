@@ -1,9 +1,11 @@
 #include "Material.h"
 #include "../Camera.h"
+#include "Shader.h"
 
 CMaterialDefault::CMaterialDefault()
 {
 	m_shader = Shaders::GetShader(EShaderType::Default);
+    m_shader->SetTexture(m_texturePath);
 }
 
 void CMaterialDefault::Use(CCamera const* camera) const

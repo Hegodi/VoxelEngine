@@ -23,6 +23,7 @@ public:
 	void SetMatrix4(std::string const& name, glm::mat4 const& value) const;
 	void SetVec3(std::string const& name, glm::vec3 const& value) const;
 	void SetVec4(std::string const& name, glm::vec4 const& value) const;
+	void SetTexture(std::string const& path);
 	EShaderType GetType() const { return m_type; }
 
 private:
@@ -33,6 +34,7 @@ private:
 private:
 	EShaderType m_type;
 	unsigned int m_id = 0;
+	unsigned int m_textureId = 0;
 };
 
 

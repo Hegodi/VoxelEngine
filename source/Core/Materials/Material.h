@@ -1,10 +1,10 @@
 #pragma once
 
 #include "glm/glm.hpp"
-
-#include "Shader.h"
+#include <string>
 
 class CCamera;
+class CShader;
 class CMaterial
 {
 public:
@@ -20,6 +20,7 @@ public:
 	void Use(CCamera const* camera) const override final;
 
 private:
+	std::string m_texturePath = "data/Textures/TerrainTextures.png";
 	glm::vec3 m_colorDifuse = { 0.4f, 0.4f, 0.4f };
 	glm::vec3 m_colorAmbient = { 0.2f, 0.2f, 0.2f };
 	glm::vec3 m_colorSpecular = { 0.8f, 0.8f, 0.8f };

@@ -56,7 +56,8 @@ bool CTerrainSector::IsSolid(EVoxelType voxel)
 	case EVoxelType::Soil:
 	case EVoxelType::Rock:
 	case EVoxelType::Water:
-	case EVoxelType::Snow:
+	case EVoxelType::Coal:
+	case EVoxelType::Cupper:
 		return true;
 		break;
 	case EVoxelType::Air:
@@ -76,17 +77,31 @@ void CTerrainSector::LoadSector(int indX, int indY)
 	float x = m_origin.x;
 
 	std::vector<float> perlinScales = { 0.01f, 0.1f };
-	std::vector<float> perlinWeights = { 0.1f, 0.1f };
+	std::vector<float> perlinWeights = { 0.2f, 0.2f };
 
 	for (int i=0; i<TerrainSettings::mc_sectorNuberVoxelsSide; i++, x += TerrainSettings::mc_voxelSize)
 	{
 		float z = m_origin.z;
 		for (int j=0; j<TerrainSettings::mc_sectorNuberVoxelsSide; j++, z += TerrainSettings::mc_voxelSize)
 		{
-			int height = MathUtils::Clamp(0.6f +  ProceduralHelpers::MultiScalePerlinNoise(x, z, perlinScales, perlinWeights), 0.0f, 1.0f) * TerrainSettings::mc_sectorNuberVoxelsSide;
+			int height = MathUtils::Clamp(0.2f +  ProceduralHelpers::MultiScalePerlinNoise(x, z, perlinScales, perlinWeights), 0.0f, 1.0f) * TerrainSettings::mc_sectorNuberVoxelsSide;
 			for (int k=0; k<height; k++)
 			{
-				m_voxelsData.push_back(EVoxelType::Soil);
+				if (k > 15 &&  rand() % 30 < k)
+				{
+					if (rand() % 2 == 0)
+					{
+						m_voxelsData.push_back(EVoxelType::Rock);
+					}
+					else
+					{
+						m_voxelsData.push_back(EVoxelType::Coal);
+					}
+				}
+				else
+				{
+					m_voxelsData.push_back(EVoxelType::Soil);
+				}
 			}
 			for (int k = height; k < TerrainSettings::mc_sectorNuberVoxelsSide; k++)
 			{
@@ -114,7 +129,16 @@ void CTerrainSector::GenerateSectorMesh(int indX, int indY)
 				{
 					glm::vec3 position(x, y, z);
 					CalculateFaces(faces, i, j, k);
-					HelpersVoxels::SetFaces(m_mesh->m_vertices, m_mesh->m_triangles, faces, position, TerrainSettings::mc_voxelSize);
+					HelpersVoxels::EVoxelMaterial material = HelpersVoxels::EVoxelMaterial::Soil;
+					if (m_voxelsData[index] == EVoxelType::Rock)
+					{
+						material = HelpersVoxels::EVoxelMaterial::Rock;
+					}
+					else if (m_voxelsData[index] == EVoxelType::Coal)
+					{
+						material = HelpersVoxels::EVoxelMaterial::Coal;
+					}
+					HelpersVoxels::SetFaces(m_mesh->m_vertices, m_mesh->m_triangles, faces, position, TerrainSettings::mc_voxelSize, material);
 				}
 			}
 		}

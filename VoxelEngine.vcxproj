@@ -88,7 +88,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\Projects\VoxelEngine\source\Core;E:\Projects\VoxelEngine\lib\glm;E:\Projects\VoxelEngine\lib\glfw-3.3.4\include;E:\Projects\VoxelEngine\lib\glad\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\Projects\VoxelEngine\source\Core;E:\Projects\VoxelEngine\lib\stb;E:\Projects\VoxelEngine\lib\glm;E:\Projects\VoxelEngine\lib\glfw-3.3.4\include;E:\Projects\VoxelEngine\lib\glad\include;$(IncludePath)</IncludePath>
     <LibraryPath>E:\Projects\VoxelEngine\lib\glfw-3.3.4\lib-vc2019;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <OutDir>$(SolutionDir)bin\</OutDir>
@@ -96,7 +96,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\Projects\VoxelEngine\source\Core;E:\Projects\VoxelEngine\lib\glm;E:\Projects\VoxelEngine\lib\glfw-3.3.4\include;E:\Projects\VoxelEngine\lib\glad\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\Projects\VoxelEngine\source\Core;E:\Projects\VoxelEngine\lib\stb;E:\Projects\VoxelEngine\lib\glm;E:\Projects\VoxelEngine\lib\glfw-3.3.4\include;E:\Projects\VoxelEngine\lib\glad\include;$(IncludePath)</IncludePath>
     <LibraryPath>E:\Projects\VoxelEngine\lib\glfw-3.3.4\lib-vc2019;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <OutDir>$(SolutionDir)bin\</OutDir>
@@ -166,6 +166,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lib\glad\src\glad.c" />
+    <ClCompile Include="lib\stb\stb_image.cpp" />
     <ClCompile Include="source\Core\Camera.cpp" />
     <ClCompile Include="source\Core\Graphics.cpp" />
     <ClCompile Include="source\Core\HelpersVoxels.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="source\Procedural\PerlinNoise.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="lib\stb\stb_image.h" />
     <ClInclude Include="source\Core\Camera.h" />
     <ClInclude Include="source\Core\Graphics.h" />
     <ClInclude Include="source\Core\HelpersVoxels.h" />

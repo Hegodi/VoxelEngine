@@ -5,6 +5,13 @@
 
 namespace HelpersVoxels
 {
-	extern void AddFace(std::vector<float>& vertices, std::vector<unsigned int>& triangles, float const face[12], glm::vec3 position, float size);
-	extern void SetFaces(std::vector<float>& vertices, std::vector<unsigned int>& triangles, bool faces[6], glm::vec3 position, float size = 1.0f);
+	enum class EVoxelMaterial
+	{
+		Soil,
+		Rock,
+		Coal,
+		Cupper
+	};
+	extern void SetFaces(std::vector<float>& vertices, std::vector<unsigned int>& triangles, bool faces[6], glm::vec3 position, float size = 1.0f, EVoxelMaterial voxelMaterial = EVoxelMaterial::Soil);
+
 };

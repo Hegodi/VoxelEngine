@@ -12,7 +12,8 @@ enum class EVoxelType : unsigned char
 	Soil,
 	Rock,
 	Water,
-	Snow,
+	Coal,
+	Cupper,
 	COUNT,
 	INVALID = COUNT
 };

@@ -7,6 +7,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/gtc/type_ptr.hpp>
+#include <stb_image.h>
 
 // Shaders
 // TODO: move it to separate files??
@@ -32,14 +33,17 @@ const char* unlit_fragmentShaderSource = "#version 330 core\n"
 const char* default_vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 aPos;\n"
 "layout (location = 1) in vec3 aNormal;\n"
+"layout (location = 2) in vec2 aTexCoord;\n"
 "uniform mat4 transform;\n"
 "out vec3 FragPos;\n"
 "out vec3 Normal;\n"
+"out vec2 TexCoord;\n"
 "void main()\n"
 "{\n"
 "   gl_Position = transform * vec4(aPos, 1.0);\n"
 "   Normal = aNormal;\n"
 "   FragPos = aPos;\n"
+"   TexCoord = aTexCoord;\n" 
 "}\0";
 
 
@@ -57,8 +61,10 @@ const char* default_fragmentShaderSource = "#version 330 core\n"
 "uniform Material material;\n"
 "uniform Light light;\n"
 "uniform vec3 viewPos;\n"
+"uniform sampler2D ourTexture;\n"
 "in vec3 FragPos;\n"
 "in vec3 Normal;\n"
+"in vec2 TexCoord;\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
@@ -71,7 +77,7 @@ const char* default_fragmentShaderSource = "#version 330 core\n"
 "   float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);\n"
 "   vec3 specular = light.color * (spec * material.specular);\n"
 "   vec3 result = ambient + diffuse + specular;\n"
-"   FragColor = vec4(result, 1.0);\n"
+"   FragColor =  texture(ourTexture, TexCoord) * vec4(result, 1.0);\n"
 "}\n\0";
 
 
@@ -112,6 +118,7 @@ CShader::~CShader()
 void CShader::Use()
 {
     glUseProgram(m_id);
+    glBindTexture(GL_TEXTURE_2D, m_textureId);
 }
 
 void CShader::SetBoolean(std::string const& name, bool value) const
@@ -142,6 +149,30 @@ void CShader::SetVec3(std::string const& name, glm::vec3 const& value) const
 void CShader::SetVec4(std::string const& name, glm::vec4 const& value) const
 {
     glUniform4f(glGetUniformLocation(m_id, name.c_str()),value.x, value.y, value.z, value.w);
+}
+
+void CShader::SetTexture(std::string const& path)
+{
+    glGenTextures(1, &m_textureId);
+    glBindTexture(GL_TEXTURE_2D, m_textureId);
+    // set the texture wrapping/filtering options (on the currently bound texture object)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    // load and generate the texture
+    int width, height, nrChannels;
+    unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "ERROR: Failed to load texture: " << path << std::endl;
+    }
+    stbi_image_free(data);
 }
 
 const char* CShader::ReadShaderProgramFromFile(const char* path)
