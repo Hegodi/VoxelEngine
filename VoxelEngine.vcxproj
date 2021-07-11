@@ -176,12 +176,12 @@
     <ClCompile Include="source\Core\Mesh.cpp" />
     <ClCompile Include="source\Core\Physics\Physics.cpp" />
     <ClCompile Include="source\Core\Player.cpp" />
+    <ClCompile Include="source\Core\Procedural\PerlinNoise.cpp" />
     <ClCompile Include="source\Core\Terrain\Terrain.cpp" />
     <ClCompile Include="source\Core\Terrain\TerrainSector.cpp" />
     <ClCompile Include="source\Core\VoxelEngine.cpp" />
     <ClCompile Include="source\Core\World.cpp" />
     <ClCompile Include="source\Main.cpp" />
-    <ClCompile Include="source\Procedural\PerlinNoise.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\stb\stb_image.h" />
@@ -195,12 +195,12 @@
     <ClInclude Include="source\Core\Mesh.h" />
     <ClInclude Include="source\Core\Physics\Physics.h" />
     <ClInclude Include="source\Core\Player.h" />
+    <ClInclude Include="source\Core\Procedural\PerlinNoise.h" />
     <ClInclude Include="source\Core\Terrain\Terrain.h" />
     <ClInclude Include="source\Core\Terrain\TerrainSector.h" />
     <ClInclude Include="source\Core\Terrain\TerrainSettings.h" />
     <ClInclude Include="source\Core\VoxelEngine.h" />
     <ClInclude Include="source\Core\World.h" />
-    <ClInclude Include="source\Procedural\PerlinNoise.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

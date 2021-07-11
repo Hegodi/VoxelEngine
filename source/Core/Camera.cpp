@@ -11,7 +11,7 @@ static const glm::vec3 World_RIGHT = { 1.0f, 0.0f, 0.0f };
 CCamera::CCamera()
 {
 	m_forwardVector = glm::vec3(0.0f, 0.0f, 1.0f);
-	m_position = glm::vec3(10.0f, 10.0f, 10.0f);
+	m_position = glm::vec3(10.0f, 30.0f, 10.0f);
 	CalculateViewTransformation();
 
 	SetScreenSize(800.0f, 600.0f);
