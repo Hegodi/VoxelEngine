@@ -2,3 +2,4 @@
 bin/*
 tmp/*
 lib/glm/doc/*
+resources/*
