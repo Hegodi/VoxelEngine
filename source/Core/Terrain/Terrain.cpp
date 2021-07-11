@@ -39,26 +39,9 @@ CTerrain::~CTerrain()
 
 void CTerrain::SetPlayerPosition(glm::vec3 position)
 {
-	int indX = -1;
-	if (position.x < 0) 
-	{
-		indX = -ceil(-position.x / TerrainSettings::mc_sectorSideLength);
-	}
-	else
-	{
-		indX = floor(position.x / TerrainSettings::mc_sectorSideLength);
-	}
 
-	int indY = -1;
-	if (position.z < 0)
-	{
-		indY = -ceil(-position.z / TerrainSettings::mc_sectorSideLength);
-	}
-	else
-	{
-		indY = floor(position.z / TerrainSettings::mc_sectorSideLength);
-	}
-
+	int indX, indY;
+	GetSectorIndices(position, indX, indY);
 	if (indX != m_indCurrentSectorX || indY != m_indCurrentSectorY)
 	{
 		OnCurrentSectorChanged(indX, indY);
@@ -124,5 +107,58 @@ void CTerrain::SwapSectors(int ind1, int ind2)
 	CTerrainSector* tmp = m_sectorsLoaded[ind1];
 	m_sectorsLoaded[ind1] = m_sectorsLoaded[ind2];
 	m_sectorsLoaded[ind2] = tmp;
+}
+
+void CTerrain::GetSectorIndices(glm::vec3 const& position, int& indX, int& indY) const
+{
+	if (position.x < 0) 
+	{
+		indX = -ceil(-position.x / TerrainSettings::mc_sectorSideLength);
+	}
+	else
+	{
+		indX = floor(position.x / TerrainSettings::mc_sectorSideLength);
+	}
+
+	if (position.z < 0)
+	{
+		indY = -ceil(-position.z / TerrainSettings::mc_sectorSideLength);
+	}
+	else
+	{
+		indY = floor(position.z / TerrainSettings::mc_sectorSideLength);
+	}
+}
+
+bool CTerrain::GetVoxelAABB(Physics::AABB& aabb, glm::vec3 position) const
+{
+	int indX, indY;
+	GetSectorIndices(position, indX, indY);
+	CTerrainSector* sector = GetLoadedSector(indX, indY);
+	if (sector == nullptr)
+	{
+		// Sector not loaded, cannot compute collision
+		std::cout << "WARNING: trying to calculate a collision outside of loaded sectors.\n";
+		return false;
+	}
+
+	return sector->GetVoxelAABB(aabb, position);
+}
+
+CTerrainSector* CTerrain::GetLoadedSector(int indX, int indY) const
+{
+	for (CTerrainSector* sector : m_sectorsLoaded)
+	{
+		if (sector->IsSector(indX, indY))
+		{
+			return sector;
+		}
+	}
+	return nullptr;
+}
+
+bool CTerrain::IsColliding(Physics::AABB aabb) const
+{
+	return false;
 }
 

@@ -167,13 +167,14 @@
   <ItemGroup>
     <ClCompile Include="lib\glad\src\glad.c" />
     <ClCompile Include="source\Core\Camera.cpp" />
-    <ClCompile Include="source\Core\Entity.cpp" />
     <ClCompile Include="source\Core\Graphics.cpp" />
     <ClCompile Include="source\Core\HelpersVoxels.cpp" />
     <ClCompile Include="source\Core\InputManager.cpp" />
     <ClCompile Include="source\Core\Materials\Material.cpp" />
     <ClCompile Include="source\Core\Materials\Shader.cpp" />
     <ClCompile Include="source\Core\Mesh.cpp" />
+    <ClCompile Include="source\Core\Physics\Physics.cpp" />
+    <ClCompile Include="source\Core\Player.cpp" />
     <ClCompile Include="source\Core\Terrain\Terrain.cpp" />
     <ClCompile Include="source\Core\Terrain\TerrainSector.cpp" />
     <ClCompile Include="source\Core\VoxelEngine.cpp" />
@@ -183,7 +184,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Core\Camera.h" />
-    <ClInclude Include="source\Core\Entity.h" />
     <ClInclude Include="source\Core\Graphics.h" />
     <ClInclude Include="source\Core\HelpersVoxels.h" />
     <ClInclude Include="source\Core\InputManager.h" />
@@ -191,6 +191,7 @@
     <ClInclude Include="source\Core\Materials\Shader.h" />
     <ClInclude Include="source\Core\MathUtils.h" />
     <ClInclude Include="source\Core\Mesh.h" />
+    <ClInclude Include="source\Core\Physics\Physics.h" />
     <ClInclude Include="source\Core\Player.h" />
     <ClInclude Include="source\Core\Terrain\Terrain.h" />
     <ClInclude Include="source\Core\Terrain\TerrainSector.h" />

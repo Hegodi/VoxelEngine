@@ -21,7 +21,7 @@ void CVoxelEngine::Run()
     CGraphics* graphics = new CGraphics();
     graphics->Init();
 
-    CWorld* world = new CWorld();
+    CWorld* world = new CWorld(false);
 
     CInputManager* inputManager = new CInputManager(EInputMode::Debug);
 
