@@ -2,14 +2,10 @@
 
 glm::vec3 const CWorld::mc_Gravity = { 0.0f, -9.8f, 0.0f };
 
-CWorld::CWorld(bool isGame)
+CWorld::CWorld()
 {
 	m_terrain = new CTerrain();
 	m_camera = new CCamera();
-	if (isGame)
-	{
-		m_player = new CPlayer(m_camera);
-	}
 }
 
 CWorld::~CWorld()
@@ -39,14 +35,4 @@ void CWorld::RemoveMesh(CMesh* mesh)
 	}
 
 	delete mesh;
-}
-
-bool CWorld::IsColliding(Physics::AABB aabb) const
-{
-	bool isColliding = false;
-	if (m_terrain != nullptr)
-	{
-		isColliding = m_terrain->IsColliding(aabb);
-	}
-	return isColliding;
 }

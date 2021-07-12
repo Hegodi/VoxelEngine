@@ -5,7 +5,6 @@
 #include "MathUtils.h"
 #include "TerrainSettings.h"
 #include "../Materials/Material.h"
-#include "Physics/Physics.h"
 
 #include <iostream>
 
@@ -32,20 +31,6 @@ EVoxelType CTerrainSector::GetVoxel(glm::vec3 position) const
 	int indY = localPosition.y / TerrainSettings::mc_sectorNuberVoxelsSide;
 	int indZ = localPosition.z / TerrainSettings::mc_sectorNuberVoxelsSide;
 	return GetVoxel(indX, indY, indZ);
-}
-
-bool CTerrainSector::GetVoxelAABB(Physics::AABB& aabb, glm::vec3 position) const
-{
-	EVoxelType voxel = GetVoxel(position);
-	if (!IsSolid(voxel))
-	{
-		return false;
-	}
-	
-	aabb.pMin = position - TerrainSettings::mc_voxelHalfSize;
-	aabb.pMax = position + TerrainSettings::mc_voxelHalfSize;
-
-	return true;
 }
 
 bool CTerrainSector::IsSolid(EVoxelType voxel)

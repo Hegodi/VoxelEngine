@@ -4,7 +4,6 @@
 #include "glm/glm.hpp"
 #include "TerrainSector.h"
 #include "Materials/Material.h"
-#include "Physics/Physics.h"
 
 
 class CTerrain
@@ -16,7 +15,6 @@ public:
 	void SetPlayerPosition(glm::vec3 position);
 	std::array<CTerrainSector*, 9> const GetSectors() const { return m_sectorsLoaded; }
 	CMaterial const* GetMaterial() const { return m_material; }
-	bool IsColliding(Physics::AABB aabb) const;
 
 private:
 	void OnCurrentSectorChanged(int indXnew, int indYnew);
@@ -26,7 +24,6 @@ private:
 	void SwapSectors(int ind1, int ind2);
 
 	void GetSectorIndices(glm::vec3 const& position, int& indX, int& indY) const;
-	bool GetVoxelAABB(Physics::AABB& aabb, glm::vec3 position) const;
 	CTerrainSector* GetLoadedSector(int indX, int indY) const;
 
 

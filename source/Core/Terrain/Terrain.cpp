@@ -130,21 +130,6 @@ void CTerrain::GetSectorIndices(glm::vec3 const& position, int& indX, int& indY)
 	}
 }
 
-bool CTerrain::GetVoxelAABB(Physics::AABB& aabb, glm::vec3 position) const
-{
-	int indX, indY;
-	GetSectorIndices(position, indX, indY);
-	CTerrainSector* sector = GetLoadedSector(indX, indY);
-	if (sector == nullptr)
-	{
-		// Sector not loaded, cannot compute collision
-		std::cout << "WARNING: trying to calculate a collision outside of loaded sectors.\n";
-		return false;
-	}
-
-	return sector->GetVoxelAABB(aabb, position);
-}
-
 CTerrainSector* CTerrain::GetLoadedSector(int indX, int indY) const
 {
 	for (CTerrainSector* sector : m_sectorsLoaded)
@@ -155,10 +140,5 @@ CTerrainSector* CTerrain::GetLoadedSector(int indX, int indY) const
 		}
 	}
 	return nullptr;
-}
-
-bool CTerrain::IsColliding(Physics::AABB aabb) const
-{
-	return false;
 }
 

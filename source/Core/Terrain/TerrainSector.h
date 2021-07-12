@@ -3,7 +3,6 @@
 
 #include "glm/glm.hpp"
 #include "Mesh.h"
-#include "Physics/Physics.h"
 
 class CMaterial;
 enum class EVoxelType : unsigned char
@@ -29,7 +28,6 @@ public:
 	bool IsSector(int indX, int indY) const { return indX == m_sectorIndX && indY == m_sectorIndY; }
 	glm::vec3 const& GetOrigin() const { return m_origin; }
 	EVoxelType GetVoxel(glm::vec3 position) const;
-	bool GetVoxelAABB(Physics::AABB& aabb, glm::vec3 position) const;
 
 	static bool IsSolid(EVoxelType voxel);
 

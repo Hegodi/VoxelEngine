@@ -174,8 +174,6 @@
     <ClCompile Include="source\Core\Materials\Material.cpp" />
     <ClCompile Include="source\Core\Materials\Shader.cpp" />
     <ClCompile Include="source\Core\Mesh.cpp" />
-    <ClCompile Include="source\Core\Physics\Physics.cpp" />
-    <ClCompile Include="source\Core\Player.cpp" />
     <ClCompile Include="source\Core\Procedural\PerlinNoise.cpp" />
     <ClCompile Include="source\Core\Terrain\Terrain.cpp" />
     <ClCompile Include="source\Core\Terrain\TerrainSector.cpp" />
@@ -193,8 +191,6 @@
     <ClInclude Include="source\Core\Materials\Shader.h" />
     <ClInclude Include="source\Core\MathUtils.h" />
     <ClInclude Include="source\Core\Mesh.h" />
-    <ClInclude Include="source\Core\Physics\Physics.h" />
-    <ClInclude Include="source\Core\Player.h" />
     <ClInclude Include="source\Core\Procedural\PerlinNoise.h" />
     <ClInclude Include="source\Core\Terrain\Terrain.h" />
     <ClInclude Include="source\Core\Terrain\TerrainSector.h" />
